@@ -6,11 +6,30 @@ import com.fc.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
+@CrossOrigin("*")
 @RestController
 @RequestMapping("user")
 public class UserController {
     @Autowired
     private UserService userService;
+
+//    @RequestMapping("get")
+//    public Map<String, Object> get() {
+//        Map<String, Object> map = new HashMap<>();
+//
+//        map.put("message":"222");
+//
+//        return map;
+//    }
+    //登录
+    @PostMapping("login")
+    public ResultVO login(@RequestParam String username,
+                          @RequestParam String password){
+        return userService.login(username,password);
+    }
 
     //用户数据获取
     @GetMapping("getlist")//驼峰命名getList  默认第一页为起始页  默认每页三条

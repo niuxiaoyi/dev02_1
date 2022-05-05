@@ -16,4 +16,7 @@ public interface UserService {
 
     //用户数据删除
     ResultVO delete(Long id);
+
+    //登录
+    ResultVO login(String username, String password);
 }

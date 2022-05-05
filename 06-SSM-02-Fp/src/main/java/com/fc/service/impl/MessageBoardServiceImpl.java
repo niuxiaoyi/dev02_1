@@ -29,17 +29,17 @@ public class MessageBoardServiceImpl implements MessageBoardService {
         ResultVO resultVO;
 
         // 分页相关的参数
-        DataVO<MessageBoard> dataVO;
+        DataVO<MessageBoardWithBLOBs> dataVO;
 
         // 结果中data对应的用户数组
-        List<MessageBoard> messageBoards;
+        List<MessageBoardWithBLOBs> messageBoards;
 
         // 说明传递了id，那就是findById
         if (id != null) {
             messageBoards = new ArrayList<>();
 
             // 查询
-            MessageBoard messageBoard = messageBoardMapper.selectByPrimaryKey(id);
+            MessageBoardWithBLOBs messageBoard = messageBoardMapper.selectByPrimaryKey(id);
 
             // 没有查到用户的情况
             if (messageBoard == null) {
@@ -60,7 +60,7 @@ public class MessageBoardServiceImpl implements MessageBoardService {
             // 开启分页
             PageHelper.startPage(pageNum, pageSize);
 
-            messageBoards = messageBoardMapper.selectByExample(null);
+            messageBoards = messageBoardMapper.selectByExampleWithBLOBs(null);
 
             // 如果数据库是空的，一个人都没查到
             if (messageBoards.size() == 0) {
@@ -70,7 +70,7 @@ public class MessageBoardServiceImpl implements MessageBoardService {
                 // 查到了
             } else {
                 // 封装pageInfo，为了获取总数据量
-                PageInfo<MessageBoard> pageInfo = new PageInfo<>(messageBoards);
+                PageInfo<MessageBoardWithBLOBs> pageInfo = new PageInfo<>(messageBoards);
 
                 dataVO = new DataVO<>(pageInfo.getTotal(), messageBoards, pageNum, pageSize);
 

@@ -7,6 +7,7 @@ import com.fc.vo.ResultVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("carousel")
 public class CarouselController {
@@ -40,7 +41,7 @@ public class CarouselController {
     }
 
     //轮播图状态
-    @PostMapping("state")
+    @GetMapping("state")
     public ResultVO changeStatus(@RequestParam Integer id){
         return carouselService.changeStatus(id);
     }

@@ -95,7 +95,7 @@
     click_num
     </sql>
     <sql id="Blob_Column_List">
-        work_require
+        `work_require`
     </sql>
     <select id="selectByExampleWithBLOBs" parameterType="com.fc.entity.VolunteerRecruitmentExample"
             resultMap="ResultMapWithBLOBs">

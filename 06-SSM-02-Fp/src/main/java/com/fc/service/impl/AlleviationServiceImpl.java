@@ -61,7 +61,7 @@ public class AlleviationServiceImpl implements AlleviationService {
             // 开启分页
             PageHelper.startPage(pageNum, pageSize);
 
-            alleviations = alleviationMapper.selectByExample(null);
+            alleviations = alleviationMapper.selectByExampleWithBLOBs(null);
 
             // 如果数据库是空的，一个人都没查到
             if (alleviations.size() == 0) {

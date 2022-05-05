@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fc.dao.AccountDao">
+    <update id="increase">
+        update t_account set t_pwd = t_pwd + #{t_pwd} where t_id = #{t_id}
+    </update>
+
+    <update id="decrease">
+        update t_account set t_pwd = t_account.t_pwd - #{t_pwd} where t_id = #{t_id}
+    </update>
+</mapper>
