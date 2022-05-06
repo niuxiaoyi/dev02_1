@@ -16,9 +16,12 @@
     <mvc:annotation-driven/>
 
     <!--    跨域-->
-    <mvc:cors>
-        <mvc:mapping path="/**" allowed-origins="*"/>
-    </mvc:cors>
+<!--    <mvc:cors>-->
+<!--        <mvc:mapping path="/**" allowed-origins="*"/>-->
+<!--    </mvc:cors>-->
+
+    <!--swagger是静态资源，springmvc默认不支持静态资源放行的。所以必须加这个配置-->
+    <mvc:default-servlet-handler/>
 
     <!--    谁在前边先执行谁-->
     <mvc:interceptors>
@@ -33,6 +36,11 @@
             <mvc:mapping path="/**"/>
             <!--            登录不需要验证-->
             <mvc:exclude-mapping path="/user/login"/>
+            <!--swagger相关的内容，必须进行放行-->
+            <mvc:exclude-mapping path="/swagger-ui.html/**"/>
+            <mvc:exclude-mapping path="/v2/**"/>
+            <mvc:exclude-mapping path="/webjars/**"/>
+            <mvc:exclude-mapping path="/swagger-resources/**"/>
             <bean class="com.fc.interceptor.JwtInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
